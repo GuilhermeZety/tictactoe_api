@@ -57,55 +57,35 @@ class RoomUtils {
   }
 
   static int? hasVictory(List<List<int?>> board, int creatorId, int opponentId) {
-    if ([board[0][0], board[1][1], board[2][2]].every((e) => e == creatorId)) {}
-    if (board[0][0] == creatorId && board[0][1] == creatorId && board[0][2] == creatorId) {
-      return creatorId;
+    final boardList = [
+      ...board[0],
+      ...board[1],
+      ...board[2],
+    ];
+
+    if (boardList.where((element) => element == null).length < 3) {
+      return null;
     }
-    if (board[0][0] == opponentId && board[0][1] == opponentId && board[0][2] == opponentId) {
-      return opponentId;
-    }
-    if (board[1][0] == creatorId && board[1][1] == creatorId && board[1][2] == creatorId) {
-      return creatorId;
-    }
-    if (board[1][0] == opponentId && board[1][1] == opponentId && board[1][2] == opponentId) {
-      return opponentId;
-    }
-    if (board[2][0] == creatorId && board[2][1] == creatorId && board[2][2] == creatorId) {
-      return creatorId;
-    }
-    if (board[2][0] == opponentId && board[2][1] == opponentId && board[2][2] == opponentId) {
-      return opponentId;
-    }
-    if (board[0][0] == creatorId && board[1][0] == creatorId && board[2][0] == creatorId) {
-      return creatorId;
-    }
-    if (board[0][0] == opponentId && board[1][0] == opponentId && board[2][0] == opponentId) {
-      return opponentId;
-    }
-    if (board[0][1] == creatorId && board[1][1] == creatorId && board[2][1] == creatorId) {
-      return creatorId;
-    }
-    if (board[0][1] == opponentId && board[1][1] == opponentId && board[2][1] == opponentId) {
-      return opponentId;
-    }
-    if (board[0][2] == creatorId && board[1][2] == creatorId && board[2][2] == creatorId) {
-      return creatorId;
-    }
-    if (board[0][2] == opponentId && board[1][2] == opponentId && board[2][2] == opponentId) {
-      return opponentId;
-    }
-    if (board[0][0] == creatorId && board[1][1] == creatorId && board[2][2] == creatorId) {
-      return creatorId;
-    }
-    if (board[0][0] == opponentId && board[1][1] == opponentId && board[2][2] == opponentId) {
-      return opponentId;
-    }
-    if (board[0][2] == creatorId && board[1][1] == creatorId && board[2][0] == creatorId) {
-      return creatorId;
-    }
-    if (board[0][2] == opponentId && board[1][1] == opponentId && board[2][0] == opponentId) {
-      return opponentId;
+
+    for (final element in indexesSuccess) {
+      if (boardList[element[0]] == creatorId && boardList[element[1]] == creatorId && boardList[element[2]] == creatorId) {
+        return creatorId;
+      }
+      if (boardList[element[0]] == opponentId && boardList[element[1]] == opponentId && boardList[element[2]] == opponentId) {
+        return opponentId;
+      }
     }
     return null;
   }
 }
+
+List<List<int>> indexesSuccess = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  [1, 4, 7],
+  [2, 5, 8],
+  [3, 6, 9],
+  [1, 5, 9],
+  [3, 5, 7],
+];
