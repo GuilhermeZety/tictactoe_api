@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:dart_frog/dart_frog.dart';
 import 'package:supabase/supabase.dart' as sb;
@@ -29,6 +30,7 @@ Future<Response> onRequest(RequestContext context) async {
 
   final resp = await supabase.from('room').insert({
     'created_by': int.parse(userId),
+    'turn': Random().nextBool(),
   }).select();
 
   return Response.json(body: resp.first);
