@@ -32,6 +32,9 @@ class RoomUtils {
 
   static List<List<int?>> changeBoardValue(List<List<int?>> board, int locale, int value) {
     final bbb = board;
+    print('bbb: $bbb');
+    print('locale: $locale');
+    print('value: $value');
     switch (locale) {
       case 1:
         bbb[0][0] = value;
@@ -68,10 +71,10 @@ class RoomUtils {
     }
 
     for (final element in indexesSuccess) {
-      if (boardList[element[0]] == creatorId && boardList[element[1]] == creatorId && boardList[element[2]] == creatorId) {
+      if (boardList[element[0] - 1] == creatorId && boardList[element[1] - 1] == creatorId && boardList[element[2] - 1] == creatorId) {
         return creatorId;
       }
-      if (boardList[element[0]] == opponentId && boardList[element[1]] == opponentId && boardList[element[2]] == opponentId) {
+      if (boardList[element[0] - 1] == opponentId && boardList[element[1] - 1] == opponentId && boardList[element[2] - 1] == opponentId) {
         return opponentId;
       }
     }
