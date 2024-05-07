@@ -30,3 +30,15 @@ Future<Response> onRequest(RequestContext context) async {
 
   return handler(context);
 }
+
+
+//EXEMPLO DE USO
+
+// final channel = WebSocketChannel.connect(
+//   Uri.parse('ws://192.168.2.120:8080/room/stream'),
+// );
+// channel.stream.listen((event) {
+//   if (event != null) {
+//     board.value = event;
+//   }
+// });
